@@ -1,0 +1,150 @@
+﻿https://www.youtube.com/embed/playlist?list=PLdo4fOcmZ0oW8nviYduHq7bmKode-p8Wy
+https://github.com/dotnet-presentations/ContosoCrafts
+https://learn.microsoft.com/ru-ru/visualstudio/version-control/git-make-commit?view=vs-2022
+Scott Hanselman & Leslie Richardson
+
+~~~~~~~~~
+[1][2] ASP.NET Core 101
+Web ASP.Net Core
+.NET 5
+
+~~~~~~~~~
+[3] Adding Data to ASP.NET
+Models -> class Product
+code snipped - фрагмент кода, шаблон
+wwroot -> data -> json
+БД - формат json
+сопоставление бд json с моделью product, json.serialization
+
+Rocket ship '=>'
+безумие на ракетном корабле Rocket ship '=>' 
+переопределение ToString в одно действие через ракету
+
+
+
+~~~~~~~~~
+[4] Adding a Service to an ASP.NET
+single responsibility principle
+принцип единой ответственности
+сервисы - server официант - просто дай мне это, не разговаривай со мной
+извлечение из БД 
+Services -> class JsonFileProductService
+
+ASP.NET является консольным приложением, веб-приложения живут на хосте
+program.cs main создает хост
+службе IWebHostEnvironment передается путь до файла json
+свойство JsonFileName - комбинация адресов - корень сайта + ..
+десериализация - json текст в объект
+
+JsonFileProductService  делает одну работу, возвращает перечисление продуктов
+сообщить ASP.NET о сервисе
+json файл как услуга service transient, временный сервис, приходит и уходит когда захочет
+Startup.cs -> ConfigureServices
+
+~~~~~~~~~
+[5] Data in a Razor Page
+Razor page - HTML & C#
+Index.cshtml.cs
+logger услуга предоставляется ASP.NET
+добавим услугу JsonFileProductService
+услуга добавлена в сервисах, ее получит тот кто попросит
+
+Index.cshtml
+модель знает о продуктах
+
+~~~~~~~~~
+[6] Styling a Razor Page
+Bootstrap
+карточки для продуктов
+добавить стили в css
+шрифты google _Layout.cshtml
+навигационная панель
+
+~~~~~~~~~
+[7] Making a Simple API
+Application Programming Interface
+Интерфейс прикладного программирования
+сериализация модели в json
+Startup.cs конечная точка
+расширение для браузера JSONView (если не работает JSON Viewer)
+
+~~~~~~~~~
+[8] Enhancing your Web API: Part 1
+single responsibility principle
+принцип единой ответственности
+Controllers -> контроллер API Controller
+Startup.cs контроллеры в сервисы и конечную точку
+
+~~~~~~~~~
+[9] Enhancing your Web API: Part 2
+изменение и запись данных
+добавление рейтинга - служебная функция
+JsonFileProductService.cs
+ProductsController.cs
+
+~~~~~~~~~
+[10] Introducing Blazor: Razor Components
+Components -> компонент Razor ProductList.razor
+карточки из Index.cshtml
+сообщаем странице о моделях,
+внедрение зависимостей сервиса json
+рейтинг на карточку
+blazor-события
+управление на стороне сервера
+диалоговое окно
+Startup.cs - Blazor страницы в сервисы и конечную точку
+Index.cshtml - скрипт, модель
+
+~~~~~~~~~
+[11] Introducing Blazor: Structure and Debugging
+ProductList.razor
+пользователь выбирает продукт - всплывающее окно
+
+~~~~~~~~~
+[12] Introducing Blazor: Interactivity
+ProductList.razor
+интерактивность, добавление звезд, рейтинг
+продукт - услуга, сериальзация не нужна
+Blazor управляет состоянием на сервере(?)
+binding привязка данных
+?? звезы не конкретный выбор а средний рейтинг после выбора отображают
+?? more не отображает с первого раза после загрузки/обновления страницы
+?? more сдвинуто к нижней карточке
+
+~~~~~~~~~
+[13] Publishing an Website to Azure
+нет ключей
+хостиг, слоты для развертывания
+https://contosocraftsisawesome.azurewebsites.net/
+
+?? у них тоже more не отображает с первого раза после загрузки/обновления страницы
+
+<div class="modal fade show" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productTitle" style="padding-right: 17px; display: block;" aria-modal="true"><!--!-->
+        <div class="modal-dialog modal-dialog-centered" role="document"><!--!-->
+            <div class="modal-content"><!--!-->
+                <div class="modal-header"><!--!-->
+                    <h5 class="modal-title" id="productTitle">Light-up Corsage</h5><!--!-->
+                    <!--!--><button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div><!--!-->
+                <div class="modal-body"><!--!-->
+                    <div class="card"><!--!-->
+                        <div class="card-img" style="background-image: url('https://user-images.githubusercontent.com/41929050/61567055-142c1c80-aa33-11e9-96ff-9fbac6413625.png');"><!--!-->
+                        </div><!--!-->
+                        <div class="card-body"><!--!-->
+                            <p class="card-text">Light-up corsage I made with my summer intern.</p><!--!-->
+                        </div><!--!-->
+                    </div><!--!-->
+                </div><!--!-->
+                <div class="modal-footer"><!--!-->
+                        <span>133 Votes</span><!--!-->
+                            <span class="fa fa-star checked"></span><!--!-->
+                            <span class="fa fa-star checked"></span><!--!-->
+                            <span class="fa fa-star"></span><!--!-->
+                            <span class="fa fa-star"></span><!--!-->
+                            <span class="fa fa-star"></span><!--!-->
+                </div><!--!-->
+            </div><!--!-->
+        </div><!--!-->
+    </div>
